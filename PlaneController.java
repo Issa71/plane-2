@@ -32,9 +32,9 @@ public class PlaneController {
 	return "Hello, world!";
 }
 @PostMapping("/createPlane")
-public Plane makePlane(@RequestBody Plane plane) {
-	System.out.println("Body: "+plane);
-	return this.service.makePlane(plane);
+public ResponseEntity<Plane> makePlane(@RequestBody Plane plane) {
+	System.out.println("Body: " + plane);
+	return new ResponseEntity<Plane>(this.service.makePlane(plane), HttpStatus.CREATED);
 }
 
 @RequestMapping(method = RequestMethod.GET, path = "/getAll")
@@ -45,7 +45,7 @@ public List<Plane> getAllBiscuits() {
 @GetMapping("/get/{id}")
 public ResponseEntity<Plane> getById(@PathVariable int id) {
 	System.out.println("ID: " + id);
-	return new ResponseEntity<Plane>(this.service.getById(id), HttpStatus.I_AM_A_TEAPOT);
+	return new ResponseEntity<Plane>(this.service.getById(id), HttpStatus.OK);
 }
 	
 @PatchMapping("/update/{id}")

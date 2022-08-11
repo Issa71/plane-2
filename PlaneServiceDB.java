@@ -33,7 +33,7 @@ public class PlaneServiceDB implements PlaneService{
 
 	@Override
 	public Plane updatePlane(int id, String name, Integer size, Double cost) {
-		Plane toUpdate = this.getById(id);
+		Plane toUpdate = this.repo.findById(id).get();
 
 		if (name != null && !name.isBlank())
 			toUpdate.setName(name);
